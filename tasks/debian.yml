@@ -1,0 +1,32 @@
+---
+- name: Install postfix
+  apt: pkg=postfix
+  sudo: yes
+
+- name: Configure postfix
+  lineinfile: >
+    state=present
+    dest=/etc/postfix/main.cf
+    regexp="^{{ item.key }} ?="
+    line="{{ item.key }} = {{ item.value }}"
+  with_dict: postfix_config
+  when: postfix_config|length > 0
+  notify: restart postfix
+
+- name: Create aliases file
+  lineinfile: >
+    state=present
+    dest=/etc/postfix/main.cf
+    line="{{ item.key }}: {{ item.value }}"
+  with_dict: postfix_aliases
+  when: postfix_aliases|length > 0
+  notify: newaliases
+
+- name: Configure mailname
+  copy:
+    content={{ ansible_hostname }}
+    dest=/etc/mailname
+    owner=root
+    group=root
+    mode=0644
+

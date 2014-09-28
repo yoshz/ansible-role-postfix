@@ -1,0 +1,5 @@
+---
+postfix_config: 
+  relayhost: ~
+postfix_aliases:
+  postmaster: root
