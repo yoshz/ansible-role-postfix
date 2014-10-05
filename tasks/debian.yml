@@ -16,7 +16,7 @@
 - name: Create aliases file
   lineinfile: >
     state=present
-    dest=/etc/postfix/main.cf
+    dest=/etc/aliases
     line="{{ item.key }}: {{ item.value }}"
   with_dict: postfix_aliases
   when: postfix_aliases|length > 0
