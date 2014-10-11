@@ -1,12 +1,17 @@
-# Ansible Role: Postfix
+postfix
+=======
 
-An Ansible Role that installs Postfix on Debian/Ubuntu Linux servers.
+An Ansible Role that configures Postfix on Debian/Ubuntu.
 
-## Requirements
+
+Requirements
+------------
 
 None.
 
-## Role Variables
+
+Role Variables
+--------------
 
     # Configuration options in /etc/postfix/main.cf:
     postfix_config:
@@ -16,17 +21,22 @@ None.
     postfix_aliases:
       postmaster: root
 
-## Dependencies
+
+Dependencies
+------------
 
 None.
 
-## Example Playbook
+
+Example Playbook
+----------------
 
     - hosts: all
       roles:
         - { role: postfix }
 
-## License
 
-MIT / BSD
+License
+-------
 
+MIT
