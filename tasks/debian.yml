@@ -9,7 +9,7 @@
     dest=/etc/postfix/main.cf
     regexp="^{{ item.key }} *="
     line="{{ item.key }} = {{ item.value }}"
-  with_dict: postfix_config
+  with_dict: "{{postfix_config}}"
   when: postfix_config|length > 0
   notify: restart postfix
 
@@ -18,7 +18,7 @@
     state=present
     dest=/etc/aliases
     line="{{ item.key }}: {{ item.value }}"
-  with_dict: postfix_aliases
+  with_dict: "{{postfix_aliases}}"
   when: postfix_aliases|length > 0
   notify: newaliases
 
