@@ -7,7 +7,7 @@
   lineinfile: >
     state=present
     dest=/etc/postfix/main.cf
-    regexp="^{{ item.key }} ?="
+    regexp="^{{ item.key }} *="
     line="{{ item.key }} = {{ item.value }}"
   with_dict: postfix_config
   when: postfix_config|length > 0
